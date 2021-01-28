@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: k8s-custom-iptables
@@ -20,10 +20,15 @@ metadata:
     app: k8s-custom-iptables
     version: v1
 spec:
+  selector:
+    matchLabels:
+      app: k8s-custom-iptables
   template:
     metadata:
       labels:
-        name: k8s-custom-iptables
+        app: k8s-custom-iptables
+      labels:
+        app: k8s-custom-iptables
     spec:
       hostNetwork: true
       tolerations:
